@@ -15,6 +15,13 @@ function getFirstBeer()
       console.error("Problem fetching beer data:", error)
       return null;
     })
+   //  .then(data =>{
+   //    data.forEach(list => {
+   //    const reviews = document.querySelector("li");
+   //    reviews.innerText = `${list.reviews}`
+   //    document.querySelector("#review-list").appendChild(reviews)
+   //    });
+   // });
 }
 
 
@@ -31,11 +38,34 @@ function updateBeerInfo(beerInfo)
 
    const firstBeer = beerInfo[0];
 
-   document.getElementById("beer.name").textContent = firstBeer.name;
-   document.getElementById("beer-image").src = firstBeer.img_url;
-   document.getElementById("beer-description").textContent = firstBeer.description;
-
+   const name = document.getElementById('beer-name');
+   if (name) 
+  {
+     name.textContent = firstBeer.name;
+  }
+   const image = document.getElementById('beer-image');
+   if (image) 
+   {
+      image.src = firstBeer.image_url;
+   }
+   const description = document.getElementById('beer-description');
+   if (description) 
+  {
+     description.textContent = firstBeer.description;
+  }
+    
+  const reviews = document.querySelector('#review-list li');
+   let reviewsArr = firstBeer.reviews; 
+   console.log(reviewsArr)
+   for(let i=0 ; i < reviewsArr.length ; i++)
+   {
+    reviews.innerText = reviewsArr[i];
+    console.log(reviews)
+   }
+      
+   
 }
+
 
 document.addEventListener('DOMContentLoaded', () =>
 {
